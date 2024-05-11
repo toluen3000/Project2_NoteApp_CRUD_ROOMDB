@@ -14,8 +14,6 @@ import java.util.prefs.Preferences
 private lateinit var binding :ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     //shared preference
-    private lateinit var mySharePreferences: SharedPreferences
-    private val PREF_NAME = "myPref"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -28,18 +26,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        binding.btnSave.setOnClickListener {
-            mySharePreferences = getSharedPreferences(PREF_NAME,0)
-            binding.textView.setText(binding.editTextText.text.toString())
-            val editor = mySharePreferences.edit()
-            editor.putString("message", binding.editTextText.text.toString())
-            editor.commit()
-        }
-        val prefs = getSharedPreferences(PREF_NAME,0)
-        if (prefs.contains("message")){
-            val message = prefs.getString("message","not found")
-            binding.textView.text = message
-        }
 
     }
 }
