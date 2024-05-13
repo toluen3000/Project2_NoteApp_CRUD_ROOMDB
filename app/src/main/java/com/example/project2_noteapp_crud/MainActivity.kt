@@ -7,12 +7,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.project2_noteapp_crud.databinding.ActivityMainBinding
 import java.util.prefs.Preferences
 
 @SuppressLint("StaticFieldLeak")
 private lateinit var binding :ActivityMainBinding
 class MainActivity : AppCompatActivity() {
+    private lateinit var noteViewModel: NoteViewModel
     //shared preference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +27,8 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        noteViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application))[NoteViewModel::class.java]
 
 
     }
