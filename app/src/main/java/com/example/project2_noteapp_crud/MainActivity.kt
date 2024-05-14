@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.project2_noteapp_crud.databinding.ActivityMainBinding
 import java.util.prefs.Preferences
 
@@ -27,8 +29,20 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        //khai báo list
+        var listNotes = mutableListOf<Note>()
+        // khai báo adapter
+        val adapterNote = NoteAdapter(listNotes)
+        binding.recyclerNote.adapter = adapterNote
+        //hiển thị theo grid
+        binding.recyclerNote.layoutManager = GridLayoutManager(this,2,GridLayoutManager.HORIZONTAL,false)
 
+        //noteViewModel
         noteViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application))[NoteViewModel::class.java]
+        noteViewModel.allNotesVM.observe(this){
+            // add data to recycler view
+            adapterNote.noteList
+        }
 
 
     }

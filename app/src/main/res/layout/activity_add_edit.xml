@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:padding="16dp"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="activities.AddEditActivity">
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edtTitle"
+        android:hint="Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edtDescription"
+        android:hint="DeScription"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <TextView
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_marginTop="8dp"
+        android:text="Nums"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <NumberPicker
+        android:id="@+id/numsPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
