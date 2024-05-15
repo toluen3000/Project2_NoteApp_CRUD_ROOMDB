@@ -52,9 +52,9 @@ class NoteAdapter( ):RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
         }
     }
 
-    fun submitList(it: MutableList<Note>?): MutableList<Note>? {
-        noteList = it!!
-        return noteList
+
+    fun setNote(note:MutableList<Note>){
+        noteList = note
     }
 
 

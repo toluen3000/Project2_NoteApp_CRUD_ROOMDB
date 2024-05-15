@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
         noteViewModel.allNotesVM.observe(this){
             // add data to recycler view
-            adapterNote.submitList(it)
+            adapterNote.setNote(it)
 
         }
 
