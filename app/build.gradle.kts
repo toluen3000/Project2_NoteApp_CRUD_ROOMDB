@@ -34,27 +34,22 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures{
-        viewBinding = true
+        dataBinding = true
     }
 }
 
 dependencies {
-    //navigation
-    val nav_version = "2.7.7"
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
     //view model
+    implementation ("androidx.fragment:fragment-ktx:1.3.2")
     val lifecycle_version = "2.7.0"
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     //roomdatabase
     val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")
 
-
-    // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
-    implementation ("androidx.room:room-ktx:$room_version")
 
     //
     implementation(libs.androidx.core.ktx)

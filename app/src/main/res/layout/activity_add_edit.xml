@@ -8,14 +8,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="activities.AddEditActivity">
+
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/edtTitle"
-        android:hint="Title"
+        android:textSize="25dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="61dp"
+        android:fontFamily="@font/poppins"
+        android:hint="Title" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/edtDescription"
+        android:fontFamily="@font/poppins"
         android:hint="DeScription"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -24,6 +28,7 @@
         android:layout_marginTop="8dp"
         android:text="Nums"
         android:layout_width="match_parent"
+        android:fontFamily="@font/poppins"
         android:layout_height="wrap_content"/>
     <NumberPicker
         android:id="@+id/numsPicker"
