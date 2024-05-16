@@ -23,7 +23,7 @@ interface NoteDAO {
     @Query("DELETE  FROM note_table")
     fun deleteAllNote(note: Note)
 
-    @Query("SELECT * FROM note_table ORDER BY age DESC")
+    @Query("SELECT * FROM note_table ORDER BY nums DESC")
     fun getAllNote():LiveData<MutableList<Note>>  //có thể quan sát đối tượng , khi có thay đổi sẽ được thông báo tự động
 
 

@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
             return NoteViewModel(application) as T
         }
     }
+
     private lateinit var getResult: ActivityResultLauncher<Intent>
     private val noteViewModel: NoteViewModel by viewModels { factory }
 
@@ -48,22 +49,16 @@ class MainActivity : AppCompatActivity() {
         recyclerNote = findViewById(R.id.recycler_Note)
 
         // khai báo adapter
+        var noteList : MutableList<Note> = mutableListOf()
         val adapterNote = NoteAdapter()
-        recyclerNote.adapter = adapterNote
-        recyclerNote.setHasFixedSize(true)
+//        recyclerNote.adapter = adapterNote
+        adapterNote.setNote(noteList)
+
+
+
         //hiển thị theo grid
         recyclerNote.layoutManager = GridLayoutManager(this,2,GridLayoutManager.HORIZONTAL,false)
 
-//        //noteViewModel
-//        noteViewModel = ViewModelProvider(this,
-//            ViewModelProvider.AndroidViewModelFactory(application)
-//        )[NoteViewModel::class.java]
-
-        noteViewModel.allNotesVM.observe(this){
-            // add data to recycler view
-            adapterNote.setNote(it)
-
-        }
 
         val getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             if (it.resultCode == Constant.REQUEST_CODE) {
@@ -72,6 +67,7 @@ class MainActivity : AppCompatActivity() {
                 val nums = it.data?.getIntExtra(Constant.EXTRA_NUMS,-1)
 
                 val note = Note(title!!, description!!,nums!!)
+                noteList.add(note)
                 noteViewModel.addNote(note)
             }
         }

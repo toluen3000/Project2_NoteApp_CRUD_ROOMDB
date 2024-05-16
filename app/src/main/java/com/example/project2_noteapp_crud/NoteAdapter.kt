@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 //
-class NoteAdapter( ):RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
+class NoteAdapter():RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
     private lateinit var noteList: MutableList<Note>
     //tạo viewHolder
     inner class NoteViewHolder(view:View):RecyclerView.ViewHolder(view)
@@ -55,6 +55,7 @@ class NoteAdapter( ):RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     fun setNote(note:MutableList<Note>){
         noteList = note
+        notifyDataSetChanged()
     }
 
 

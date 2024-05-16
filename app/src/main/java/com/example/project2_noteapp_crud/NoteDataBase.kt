@@ -17,7 +17,8 @@ abstract class NoteDataBase:RoomDatabase() {
             //nếu INSTANT là null, sau đó trả về nó
             // nếu là nó thì tạo database
             return INSTANT ?: synchronized(this){ // để cho dữ liệu truy nhập vào cùng 1 nguồn
-                val instance = Room.databaseBuilder(context.applicationContext, NoteDataBase::class.java, "note_database").build()
+                val instance = Room.databaseBuilder(context.applicationContext, NoteDataBase::class.java, "note_database")
+                    .build()
                 INSTANT = instance
                 //return instance
                 instance

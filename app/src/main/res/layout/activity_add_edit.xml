@@ -10,6 +10,7 @@
     tools:context="activities.AddEditActivity">
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:layout_marginTop="10dp"
         android:id="@+id/edtTitle"
         android:textSize="25dp"
         android:layout_width="match_parent"
