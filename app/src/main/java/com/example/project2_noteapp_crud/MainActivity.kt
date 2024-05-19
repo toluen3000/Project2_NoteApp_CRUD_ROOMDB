@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         // khai báo adapter
         var noteList : MutableList<Note> = mutableListOf()
         val adapterNote = NoteAdapter()
-//        recyclerNote.adapter = adapterNote
+       recyclerNote.adapter = adapterNote
         adapterNote.setNote(noteList)
 
 
@@ -59,21 +59,21 @@ class MainActivity : AppCompatActivity() {
         //hiển thị theo grid
         recyclerNote.layoutManager = GridLayoutManager(this,2,GridLayoutManager.HORIZONTAL,false)
 
-
-        val getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-            if (it.resultCode == Constant.REQUEST_CODE) {
-                val title = it.data?.getStringExtra(Constant.EXTRA_TITLE)
-                val description = it.data?.getStringExtra(Constant.EXTRA_DESCRIPTION)
-                val nums = it.data?.getIntExtra(Constant.EXTRA_NUMS,-1)
-
-                val note = Note(title!!, description!!,nums!!)
-                noteList.add(note)
-                noteViewModel.addNote(note)
-            }
+        val i = intent
+        val bundle = i.extras
+        if (bundle != null){
+            val title = i.getStringExtra(Constant.EXTRA_TITLE)
+            val description = i.getStringExtra(Constant.EXTRA_DESCRIPTION)
+            val nums = i.getIntExtra(Constant.EXTRA_NUMS,-1)
+            val note = Note(title!!,description!!,nums)
+            noteList.add(note)
+            noteViewModel.addNote(note)
         }
+
         btnAddNote.setOnClickListener{
-            val intent = Intent(this@MainActivity,AddEditActivity::class.java)
-            getResult.launch(intent) }
+            val intent = Intent(this,AddEditActivity::class.java)
+            startActivity(intent)
+             }
 
 
     }

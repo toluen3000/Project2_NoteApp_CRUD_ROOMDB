@@ -1,11 +1,13 @@
 package activities
 
+import android.content.ClipData.Item
 import android.content.Intent
 import android.os.Bundle
 import android.os.ParcelFileDescriptor
 import android.text.Editable
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.EditText
 import android.widget.NumberPicker
 import android.widget.Toast
@@ -14,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.project2_noteapp_crud.Constant.Constant
+import com.example.project2_noteapp_crud.MainActivity
 import com.example.project2_noteapp_crud.R
 
 class AddEditActivity : AppCompatActivity() {
@@ -46,15 +49,16 @@ class AddEditActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-            when(item.itemId){
-                R.id.saveMenu -> {
-                    saveNote()
-                }
+        when(item.itemId){
+            R.id.saveMenu -> {
+                saveNote()
             }
+        }
         return super.onOptionsItemSelected(item)
     }
 
     private fun saveNote() {
+        val intentI = Intent(this,MainActivity::class.java)
         var title = edtTitle.text.toString()
         var description = edtDescription.text.toString()
         var numberPicker = numberPicker.value
@@ -63,12 +67,13 @@ class AddEditActivity : AppCompatActivity() {
             Toast.makeText(this,"Please insert Title and Description",Toast.LENGTH_SHORT).show()
         }
 
-        setResult(Constant.REQUEST_CODE,Intent().apply {
-            putExtra(Constant.EXTRA_TITLE,title)
-            putExtra(Constant.EXTRA_DESCRIPTION,description)
-            putExtra(Constant.EXTRA_NUMS,numberPicker)
+        val bundle = Bundle()
+        bundle.putString(Constant.EXTRA_TITLE, title )
+        bundle.putString(Constant.EXTRA_DESCRIPTION,description)
+        bundle.putInt(Constant.EXTRA_NUMS,numberPicker)
+        // gói
+        intentI.putExtras(bundle)
+        startActivity(intentI)
 
-        })
-        finish()
     }
 }
