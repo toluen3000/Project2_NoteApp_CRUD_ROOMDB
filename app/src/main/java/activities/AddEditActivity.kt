@@ -67,6 +67,8 @@ class AddEditActivity : AppCompatActivity() {
             Toast.makeText(this,"Please insert Title and Description",Toast.LENGTH_SHORT).show()
         }
 
+
+
         val bundle = Bundle()
         bundle.putString(Constant.EXTRA_TITLE, title )
         bundle.putString(Constant.EXTRA_DESCRIPTION,description)

@@ -2,8 +2,11 @@ package com.example.project2_noteapp_crud
 
 import activities.AddEditActivity
 import android.annotation.SuppressLint
+import android.content.ClipData.Item
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -54,10 +57,15 @@ class MainActivity : AppCompatActivity() {
        recyclerNote.adapter = adapterNote
         adapterNote.setNote(noteList)
 
+        noteList.add(Note("Test", "Test", 1))
+        noteList.add(Note("2", "3", 1))
+        noteList.add(Note("4", "5", 1))
+
 
 
         //hiển thị theo grid
-        recyclerNote.layoutManager = GridLayoutManager(this,2,GridLayoutManager.HORIZONTAL,false)
+        recyclerNote.layoutManager = GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false)
+
 
         val i = intent
         val bundle = i.extras
@@ -66,15 +74,15 @@ class MainActivity : AppCompatActivity() {
             val description = i.getStringExtra(Constant.EXTRA_DESCRIPTION)
             val nums = i.getIntExtra(Constant.EXTRA_NUMS,-1)
             val note = Note(title!!,description!!,nums)
-            noteList.add(note)
-            noteViewModel.addNote(note)
+            noteList.add(Note(title,description,nums))
+            noteViewModel.addNote(Note(title,description,nums))
         }
 
         btnAddNote.setOnClickListener{
             val intent = Intent(this,AddEditActivity::class.java)
             startActivity(intent)
-             }
 
+        }
 
     }
 }

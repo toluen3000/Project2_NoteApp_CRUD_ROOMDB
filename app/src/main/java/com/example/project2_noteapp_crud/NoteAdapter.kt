@@ -16,19 +16,6 @@ class NoteAdapter():RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
     private lateinit var noteList: MutableList<Note>
     //tạo viewHolder
     inner class NoteViewHolder(view:View):RecyclerView.ViewHolder(view)
-    private val differCallback = object :DiffUtil.ItemCallback<Note>(){
-        override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
-            return oldItem.id == newItem.id &&
-                    oldItem.title == newItem.title &&
-                    oldItem.description == newItem.description
-        }
-
-        override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {
-            return oldItem == newItem
-        }
-
-    }
-    val differ = AsyncListDiffer(this,differCallback)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
@@ -51,8 +38,6 @@ class NoteAdapter():RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
             txtDescription.text = note.description
         }
     }
-
-
     fun setNote(note:MutableList<Note>){
         noteList = note
         notifyDataSetChanged()
